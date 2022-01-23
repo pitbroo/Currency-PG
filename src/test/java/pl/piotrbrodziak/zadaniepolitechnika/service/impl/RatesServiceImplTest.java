@@ -31,7 +31,6 @@ class RatesServiceImplTest {
         rates2.setCode("USD");
         rates2.setAsk(3.6733);
         rates2.setBid(3.9999);
-
     }
 
     @Test

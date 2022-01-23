@@ -1,5 +1,6 @@
 package pl.piotrbrodziak.zadaniepolitechnika.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,7 @@ public class RatesController {
     }
 
     @GetMapping
-    public List<Rates> getRatesList(){
-        return currencyClient.getRatesList();
+    public ResponseEntity<List<Rates>> getRatesList(){
+        return ResponseEntity.ok(currencyClient.getRatesList());
     }
 }

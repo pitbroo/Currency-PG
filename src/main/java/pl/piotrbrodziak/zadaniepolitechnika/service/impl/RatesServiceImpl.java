@@ -47,11 +47,9 @@ public class RatesServiceImpl implements RatesService {
         BigDecimal sum;
         BigDecimal ratesA = BigDecimal.valueOf(rates1.getAsk());
         BigDecimal ratesB = BigDecimal.valueOf(rates2.getAsk());
-        if (ratesA != null && ratesB!= null) {
-            if (rates1.getAsk() > rates2.getAsk() ){
-                sum = ratesA.subtract(ratesB);
-            } else sum = ratesB.subtract(ratesA);
-        } else sum = new BigDecimal(0.00d);
+        if (rates1.getAsk() > rates2.getAsk() ){
+            sum = ratesA.subtract(ratesB);
+        } else sum = ratesB.subtract(ratesA);
         return sum.doubleValue();
     }
 
@@ -60,11 +58,9 @@ public class RatesServiceImpl implements RatesService {
         BigDecimal sum;
         BigDecimal ratesA = BigDecimal.valueOf(rates1.getBid());
         BigDecimal ratesB = BigDecimal.valueOf(rates2.getBid());
-        if (ratesA != null && ratesB!= null) {
-            if (rates1.getBid() > rates2.getBid() ){
-                sum = ratesA.subtract(ratesB);
-            } else sum = ratesB.subtract(ratesA);
-        } else sum = new BigDecimal(0.00d);
+        if (rates1.getBid() > rates2.getBid() ){
+            sum = ratesA.subtract(ratesB);
+        } else sum = ratesB.subtract(ratesA);
         return sum.doubleValue();
     }
     public Rates getRatesFromCurrentJsonNodeWithoutDate(JsonNode currencyJsonNode){
