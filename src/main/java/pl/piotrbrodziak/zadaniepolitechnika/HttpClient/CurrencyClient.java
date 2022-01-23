@@ -6,6 +6,8 @@ import org.springframework.web.client.RestTemplate;
 import pl.piotrbrodziak.zadaniepolitechnika.dto.Rates;
 import pl.piotrbrodziak.zadaniepolitechnika.service.RatesService;
 
+import java.util.List;
+
 
 @Component
 public class CurrencyClient {
@@ -24,14 +26,12 @@ public class CurrencyClient {
         String URL = "https://api.nbp.pl/api/exchangerates/rates/c/"+currency+"/"+date+"/?format=json";
         JsonNode currencyJsonNode = restTemplate.getForObject(URL,JsonNode.class);
         Rates rates;
-        rates = ratesService.getRatesFromCurrentJsonNode(currencyJsonNode);
-//        CurrencyDTO currencyDTO = new CurrencyDTO();
-//        currencyDTO.setNo(currencyJsonNode.get(0).get("no").asText());
-//        currencyDTO.setEffectiveDate(currencyJsonNode.get(0).get("effectiveDate").asText());
-//        currencyDTO.setTable(currencyJsonNode.get(0).get("table").asText());
-//        //Tutaj zmienić to, żeby nie było statyczne
-//        currencyDTO.setRates(RatesService.getRatefromCurrentJsonNode(currencyJsonNode));
-        return rates;
+        return ratesService.getRatesFromCurrentJsonNode(currencyJsonNode);
+    }
+    public List<Rates> getRatesList(){
+        String urlAll = "https://api.nbp.pl/api/exchangerates/tables/C?format=json";
+        JsonNode currencyJsonNode = restTemplate.getForObject(urlAll, JsonNode.class);
+        return ratesService.getRatesListFromCurrentJsonNode(currencyJsonNode);
     }
 
 

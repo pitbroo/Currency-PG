@@ -33,6 +33,14 @@ public class RatesServiceImpl implements RatesService {
         rates.setAsk(currencyJsonNode.get("rates").get(0).get("ask").asDouble());
         return rates;
     }
+    @Override
+    public List<Rates> getRatesListFromCurrentJsonNode(JsonNode currencyJsonNode){
+        List<Rates> ratesList = new ArrayList<>();
+        for (JsonNode jn: currencyJsonNode.get(0).get("rates")) {
+            ratesList.add(getRatesFromCurrentJsonNodeWithoutDate(jn));
+        }
+        return ratesList;
+    }
 
     @Override
     public Double getSumAsk(Rates rates1, Rates rates2) {
@@ -58,5 +66,13 @@ public class RatesServiceImpl implements RatesService {
             } else sum = ratesB.subtract(ratesA);
         } else sum = new BigDecimal(0.00d);
         return sum.doubleValue();
+    }
+    public Rates getRatesFromCurrentJsonNodeWithoutDate(JsonNode currencyJsonNode){
+        Rates rates = new Rates();
+        rates.setCurrency(currencyJsonNode.get("currency").asText());
+        rates.setCode(currencyJsonNode.get("code").asText());
+        rates.setBid(currencyJsonNode.get("bid").asDouble());
+        rates.setAsk(currencyJsonNode.get("ask").asDouble());
+        return rates;
     }
 }

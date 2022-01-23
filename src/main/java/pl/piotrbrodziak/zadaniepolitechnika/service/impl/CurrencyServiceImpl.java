@@ -21,7 +21,6 @@ public class CurrencyServiceImpl implements CurrencyService {
     public CurrencyDto designateCurrencyDto(Rates rates1, Rates rates2) {
         CurrencyDto currencyDto = new CurrencyDto();
         currencyDto.setSumAsk(ratesService.getSumAsk(rates1, rates2));
-        System.out.println(ratesService.getSumAsk(rates1, rates2));
         currencyDto.setSumBid(ratesService.getSumBid(rates1, rates2));
         List<Rates> ratesList = new ArrayList<>();
         ratesList.add(rates1);

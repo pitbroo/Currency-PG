@@ -1,9 +1,6 @@
 package pl.piotrbrodziak.zadaniepolitechnika.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.piotrbrodziak.zadaniepolitechnika.HttpClient.CurrencyClient;
 import pl.piotrbrodziak.zadaniepolitechnika.dto.CurrencyDto;
 import pl.piotrbrodziak.zadaniepolitechnika.dto.Rates;
@@ -11,7 +8,8 @@ import pl.piotrbrodziak.zadaniepolitechnika.service.CurrencyService;
 import pl.piotrbrodziak.zadaniepolitechnika.service.RatesService;
 
 @RestController
-@RequestMapping("rates")
+@RequestMapping("currency")
+@CrossOrigin("*")
 public class CurrencyController {
 
     private final CurrencyClient currencyClient;
